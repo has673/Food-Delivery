@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Kitchen = require('./Kitchen')
 const ItemSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -9,10 +8,11 @@ const ItemSchema = new mongoose.Schema({
     price:{
         type:Number
     },
-    Kitchen:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:Kitchen
-    }
+    photo: {
+        data: Buffer,
+        contentType: String,
+     },
+
 },{
     timestamps:true
 })

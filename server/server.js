@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const cookieParser = require('cookie-parser');
 const authRouter = require('./Routes/Auth');
-// const adminRouter = require('./Routes/Admin');
+const itemRouter = require('./Routes/Item');
 // const userRouter = require('./Routes/User');
 // const blogRouter = require('./Routes/Blog');
 // const commentRouter = require('./Routes/Comment')
@@ -25,7 +25,7 @@ app.use(express.json());
 
 app.use(cookieParser())
 app.use('/auth', authRouter);
-// app.use('/admin', adminRouter);
+app.use('/item', itemRouter);
 // app.use('/user', userRouter);
 // app.use('/blog', blogRouter);
 // app.use('/comment' , commentRouter)

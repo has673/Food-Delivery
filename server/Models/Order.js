@@ -9,8 +9,6 @@ const OrderSchema = new mongoose.Schema({
  
     quantiy:{
         type:Number,
-
-
     },
     deliveryDetails: {
         email: { type: String, required: true },
@@ -23,10 +21,7 @@ const OrderSchema = new mongoose.Schema({
         ref:User
 
     },
-    Kitchen:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:Kitchen
-    },
+   
     status: {
         type: String,
         enum: ["placed", "paid", "inProgress", "outForDelivery", "delivered"],
