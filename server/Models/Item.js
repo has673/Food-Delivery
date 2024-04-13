@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 const ItemSchema = new mongoose.Schema({
     name:{
         type:String,
-        reuired:true,
-
+        required:true,
     },
     price:{
         type:Number
@@ -11,9 +11,9 @@ const ItemSchema = new mongoose.Schema({
     photo: {
         data: Buffer,
         contentType: String,
-     },
-
+    },
 },{
     timestamps:true
-})
-module.exports = mongoose.model(Item,ItemSchema )
+});
+
+module.exports = mongoose.model('Item', ItemSchema);

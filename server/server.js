@@ -10,8 +10,8 @@ const port = process.env.PORT || 3000;
 const cookieParser = require('cookie-parser');
 const authRouter = require('./Routes/Auth');
 const itemRouter = require('./Routes/Item');
-// const userRouter = require('./Routes/User');
-// const blogRouter = require('./Routes/Blog');
+const userRouter = require('./Routes/User');
+const  cartRouter = require('./Routes/Cart');
 // const commentRouter = require('./Routes/Comment')
 require('dotenv').config();
 connectDB()
@@ -26,6 +26,6 @@ app.use(express.json());
 app.use(cookieParser())
 app.use('/auth', authRouter);
 app.use('/item', itemRouter);
-// app.use('/user', userRouter);
-// app.use('/blog', blogRouter);
+app.use('/user', userRouter);
+ app.use('/cart', cartRouter);
 // app.use('/comment' , commentRouter)

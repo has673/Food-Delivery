@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Kitchen = require('./Kitchen')
 const OrderSchema = new mongoose.Schema({
     name:{
         type:String,

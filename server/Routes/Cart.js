@@ -1,4 +1,4 @@
-const Item = require('../Controllers/Item')
+const Cart = require('../Controllers/Cart')
 const express = require('express')
 const {verifyToken , verifyAdmin} = require('../Utils/Verify')
 
@@ -8,6 +8,6 @@ const router  = express.Router()
 
 
 
-router.post("/create", verifyToken, formidable(),  Item.create)
+router.post("/addtocart", verifyToken,  Cart.addToCart)
 
 module.exports = router;
