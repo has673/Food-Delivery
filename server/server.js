@@ -12,7 +12,7 @@ const authRouter = require('./Routes/Auth');
 const itemRouter = require('./Routes/Item');
 const userRouter = require('./Routes/User');
 const  cartRouter = require('./Routes/Cart');
-// const commentRouter = require('./Routes/Comment')
+const   orderRouter = require('./Routes/Order')
 require('dotenv').config();
 connectDB()
 app.listen(port, () => {
@@ -27,5 +27,5 @@ app.use(cookieParser())
 app.use('/auth', authRouter);
 app.use('/item', itemRouter);
 app.use('/user', userRouter);
- app.use('/cart', cartRouter);
-// app.use('/comment' , commentRouter)
+app.use('/cart', cartRouter);
+app.use('/order' ,orderRouter)

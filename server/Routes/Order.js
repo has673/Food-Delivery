@@ -5,3 +5,6 @@ const router = express.Router()
 
 router.get('/allorders', verifyToken , Order.getorder)
 router.post('/makeorder', verifyToken , Order.makeorder)
+router.get('/myorder',verifyToken,Order.myorder)
+
+module.exports = router;

@@ -18,11 +18,10 @@ const makeorder= async(req,res,next)=>{
         quantity: item.quantity
       })),
       totalPrice: cart.items.reduce((total, item) => total + item.quantity * item.product.price, 0),
-      deliveryDetails: req.body.deliveryDetails
+    //   deliveryDetails: req.body.deliveryDetails
     });
-
     // Clear the user's cart after creating the order
-    await cart.remove();
+    await cart.deleteOne();
 
     // Save the new order
     await newOrder.save();
@@ -48,7 +47,12 @@ catch(err){
 
 const myorder = async(req,res,next)=>{
     try{
-        const myorder = await Order.findById({user:})
+        const myorder = await Order.findById({user:req.user.id})
+        console.log(myorder)
+        if(!myorder){
+          res.status(400).json({message:"no orders found"})
+        }
+        res.status(200).json(myorder)
 
     }
     catch(err){
@@ -58,5 +62,6 @@ const myorder = async(req,res,next)=>{
 
 module.exports = {
     makeorder,
-    getorder
+    getorder,
+    myorder
 }
