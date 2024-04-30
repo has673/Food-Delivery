@@ -9,6 +9,8 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Food from './Pages/Food';
 import Cart from './Pages/Cart';
+import PrivateRoute from './Pages/PrivateRoute';
+import NotFound from './Pages/NotFound';
 // import Dashboard from './Pages/Admin/Dashboard';
 // import Forgot from './Pages/Forgot';
 // import UpdateProfile from './Pages/User/UpdateProfile'
@@ -31,16 +33,16 @@ const router = createBrowserRouter(
         <Route path='/Cart' element={<Cart/>} />
         {/* <Route path='/Dashboard' element={<Dashboard/>}> */}
          </Route>
-         <Route path='/food/:id' element=<Food/> />
-        {/* <Route path="/blog/:id"  element={<Privateroute/>} > //protected routes  
-        <Route path=""  element={<Singleblog/>} />  
+           <Route path="/food/:id"  element={<PrivateRoute/>} > 
+         <Route path='' element=<Food/> />
+       
         </Route>
         
-        <Route path='/user/:id' element={<User/>} />
+        {/* <Route path='/user/:id' element={<User/>} />
         <Route path='/updateprofile/:id' element={<UpdateProfile/>}/>
         <Route path='/writeblog' element={<Write/>}/>
-        <Route path='/editblog/:id' element={<EditBlog/>}/>
-        <Route path= "*" element={<Notfound/>}/> */}
+        <Route path='/editblog/:id' element={<EditBlog/>}/> */}
+        <Route path= "*" element={<NotFound/>}/> 
         
       
     </>
