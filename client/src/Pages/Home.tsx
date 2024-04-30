@@ -31,7 +31,7 @@ function Home() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-center">
-        <h1 className="text-2xl font-bold mt-14 mb-10">Blog List</h1>
+        <h1 className="text-2xl font-bold mt-14 mb-10">Our Pizzas</h1>
 
       
         {loading ? ( // Show spinner when loading is true

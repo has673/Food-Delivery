@@ -11,6 +11,7 @@ import Food from './Pages/Food';
 import Cart from './Pages/Cart';
 import PrivateRoute from './Pages/PrivateRoute';
 import NotFound from './Pages/NotFound';
+import Order from './Pages/Order';
 // import Dashboard from './Pages/Admin/Dashboard';
 // import Forgot from './Pages/Forgot';
 // import UpdateProfile from './Pages/User/UpdateProfile'
@@ -31,12 +32,15 @@ const router = createBrowserRouter(
         <Route path='/About' element={<About />} />
         <Route path='/Contact' element={<Contact />} />
         <Route path='/Cart' element={<Cart/>} />
+        <Route path='/Order' element={<Order/>} />
         {/* <Route path='/Dashboard' element={<Dashboard/>}> */}
-         </Route>
-           <Route path="/food/:id"  element={<PrivateRoute/>} > 
+        <Route path="/food/:id"  element={<PrivateRoute/>} > 
          <Route path='' element=<Food/> />
+         
        
         </Route>
+         </Route>
+      \
         
         {/* <Route path='/user/:id' element={<User/>} />
         <Route path='/updateprofile/:id' element={<UpdateProfile/>}/>

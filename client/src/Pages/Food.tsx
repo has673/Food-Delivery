@@ -49,7 +49,16 @@ function Food() {
     //     }
     // };
     const Addtocart= async()=>{
-        console.log('cart')
+        try{
+            const cart = await axios.get(`http://localhost:3000/cart/addtocart/${id}`);
+            
+            console.log('cart')
+
+        }
+        catch(err){
+            console.log(err)
+        }
+       
 
     }
     const fetchFood = async () => {
@@ -161,6 +170,7 @@ function Food() {
                     )}
                     <div className="ml-4">
                         <h1 className='font-bold'>{food.name}</h1>
+                        <h3 className='font-bold'>{food.price}</h3>
                         {/* <button onClick={likeBlog}>
                             {isLiked ? <AiFillLike /> : <AiOutlineLike />}
                         </button> */}
@@ -169,7 +179,7 @@ function Food() {
                         <h2 className="mt-4 font-bold">Details</h2>
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa sed error obcaecati, tempora quam illum nam, voluptate veritatis dolorem odit ut excepturi ipsum similique, nobis ab repudiandae! Quia possimus natus perspiciatis sed accusamus aliquid repellendus?</p>
                        
-                       <button onClick={Addtocart()}>Add to Cart</button>
+                       <button className='bg-green-500 p-3 block m-auto mt-14 text-white  rounded-xl cursor-pointer' onClick={Addtocart}>Add to Cart</button>
                         {/* {loadingComments ? (
                             <ClipLoader className='flex items-center justify-center' color="#2196F3" size={30} loading={loadingComments} />
                         ) : (

@@ -13,6 +13,28 @@ const getCart = async (req, res) => {
   }
 };
 
+const countItemsInCart = async (req, res) => {
+  try {
+    // Find the cart for the user
+    const cart = await Cart.findOne({ user: req.user.uid });
+
+    if (!cart) {
+      return res.status(200).json({ count: 0 }); // Return 0 if cart is empty
+    }
+
+    // Calculate total number of items in the cart
+    let totalCount = 0;
+    for (const item of cart.items) {
+      totalCount += item.quantity;
+    }
+
+    res.status(200).json({ count: totalCount });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
 // Add item to cart
 const addToCart = async (req, res) => {
   const { quantity } = req.body;
@@ -64,5 +86,6 @@ const clearCart = async (req, res) => {
 module.exports={
     getCart,
     addToCart,
-    clearCart
+    clearCart,
+    countItemsInCart
 }

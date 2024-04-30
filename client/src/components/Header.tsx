@@ -16,10 +16,10 @@ function Header() {
 
   return (
     <header>
-      <div className="bg-blue-500 p-4">
+      <div className="bg-green-500 p-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-white font-bold text-lg">Your Logo</div>
+          <div className="text-white font-bold text-lg"><Link to='/Home'>Pizzas</Link></div>
 
           {/* Navbar Links */}
           <div className="space-x-4">
@@ -54,6 +54,9 @@ function Header() {
                 </Link>
               </>
             )} 
+             <Link to="/cart" className="text-white hover:text-gray-300">
+              Cart
+            </Link>
           </div>
         </nav>
       </div>

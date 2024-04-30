@@ -13,4 +13,5 @@ router.post("/addtocart/:productId", verifyToken,  Cart.addToCart)
 router.get("/getcart", verifyToken,  Cart.getCart)
 
 router.delete('/clearcart', verifyToken, Cart.clearCart)
+router.get('/count', Cart.countItemsInCart)
 module.exports = router;
