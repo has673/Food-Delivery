@@ -23,7 +23,7 @@ const cartslice = createSlice({
   },
 });
 
-export const { addToCartStart, addToCartSuccess, addToCartFailure } = cartSlice.actions;
+export const { addToCartStart, addToCartSuccess, addToCartFailure } = cartslice.actions;
 
 export default cartslice.reducer;
 

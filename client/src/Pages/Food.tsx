@@ -50,7 +50,9 @@ function Food() {
     // };
     const Addtocart= async()=>{
         try{
-            const cart = await axios.get(`http://localhost:3000/cart/addtocart/${id}`);
+            const cart = await axios.get(`http://localhost:3000/cart/addtocart/${id}`,{
+                quantity:1
+            });
             
             console.log('cart')
 

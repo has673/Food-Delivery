@@ -31,14 +31,19 @@ const router = createBrowserRouter(
         <Route path='/Home' element={<Home />} />
         <Route path='/About' element={<About />} />
         <Route path='/Contact' element={<Contact />} />
-        <Route path='/Cart' element={<Cart/>} />
+      
         <Route path='/Order' element={<Order/>} />
         {/* <Route path='/Dashboard' element={<Dashboard/>}> */}
         <Route path="/food/:id"  element={<PrivateRoute/>} > 
          <Route path='' element=<Food/> />
-         
-       
         </Route>
+        <Route element={<PrivateRoute/>} 
+        
+        
+        />
+       
+       
+  
          </Route>
       \
         

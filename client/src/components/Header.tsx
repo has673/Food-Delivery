@@ -54,7 +54,7 @@ function Header() {
                 </Link>
               </>
             )} 
-             <Link to="/cart" className="text-white hover:text-gray-300">
+             <Link to="/Cart" className="text-white hover:text-gray-300">
               Cart
             </Link>
           </div>

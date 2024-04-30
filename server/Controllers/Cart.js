@@ -17,6 +17,7 @@ const countItemsInCart = async (req, res) => {
   try {
     // Find the cart for the user
     const cart = await Cart.findOne({ user: req.user.uid });
+    
 
     if (!cart) {
       return res.status(200).json({ count: 0 }); // Return 0 if cart is empty
