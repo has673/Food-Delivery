@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 const User = require('./User')
 const OrderSchema = new mongoose.Schema({
+    OrderId:{
+      type:String,
+      required:true,
+    },
 
     items: [{
         product: {
@@ -32,6 +36,9 @@ const OrderSchema = new mongoose.Schema({
         enum: ["placed", "paid", "inProgress", "outForDelivery", "delivered"],
         default:'placed'
       },
+      totalPrice:{
+        type:Number,
+      }
 },{
     timestamps:true
 })

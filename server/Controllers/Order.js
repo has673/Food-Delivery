@@ -1,6 +1,6 @@
 const Order = require('../Models/Order')
 const Cart = require('../Models/Cart')
-
+const uuid = require('uuid');
 const makeorder= async(req,res,next)=>{
     try{
           // Find the user's cart
@@ -9,6 +9,7 @@ const makeorder= async(req,res,next)=>{
     if (!cart || cart.items.length === 0) {
       return res.status(400).json({ message: 'Cart is empty' });
     }
+    const orderid = uuid.v4();
 
     // Create a new order based on the items in the cart
     const newOrder = new Order({
@@ -18,6 +19,7 @@ const makeorder= async(req,res,next)=>{
         quantity: item.quantity
       })),
       totalPrice: cart.items.reduce((total, item) => total + item.quantity * item.product.price, 0),
+      OrderId:orderid
     //   deliveryDetails: req.body.deliveryDetails
     });
     // Clear the user's cart after creating the order
@@ -47,7 +49,7 @@ catch(err){
 
 const myorder = async(req,res,next)=>{
     try{
-        const myorder = await Order.findById({user:req.user.id})
+        const myorder = await Order.find({User:req.user.uid})
         console.log(myorder)
         if(!myorder){
           res.status(400).json({message:"no orders found"})

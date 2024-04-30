@@ -48,7 +48,7 @@ async function Login(req, res, next) {
        const token =  await jwt.sign(
            { _id: user._id, email: user.email },
            process.env.jwtsecret,
-           { expiresIn: "3d" }
+           { expiresIn: "7d" }
        );
 
        console.log('logged in');

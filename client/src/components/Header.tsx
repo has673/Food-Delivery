@@ -1,18 +1,18 @@
 
 import { Link, useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { logout } from '../redux/slices/userslice';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../Redux/slices/userslice';
 
 function Header() {
-//   const user = useSelector(state => state.user.currentUser);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
+   const user = useSelector(state => state.user.currentUser);
+ const dispatch = useDispatch();
+   const navigate = useNavigate();
 
-//   const handleLogout = () => {
-//     dispatch(logout());
-//     // Optionally clear any local storage or perform server-side logout logic
-//     navigate('/login');
-//   };
+   const handleLogout = () => {
+     dispatch(logout());
+    
+    navigate('/login');
+   };
 
   return (
     <header>
@@ -31,7 +31,7 @@ function Header() {
             </Link>
            
             {/* Profile Link */}
-            {/* {user ? (
+             {user ? (
               <>
                 <Link to={`/user/${user.uid}`}  className="text-white hover:text-gray-300">
                   Profile
@@ -53,7 +53,7 @@ function Header() {
                   Signup
                 </Link>
               </>
-            )} */}
+            )} 
           </div>
         </nav>
       </div>

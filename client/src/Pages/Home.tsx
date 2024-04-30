@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners'; // Import ClipLoader from react-spinners
 import Card from '../components/Card'; // Import the BlogCard component
@@ -10,12 +10,14 @@ function Home() {
 
 
   useEffect(() => {
-    getBlogs();
+    getFoods();
   }, []);
 
-  const getBlogs = async () => {
+  const getFoods = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/blog/getblogs');
+      const response = await axios.get('http://localhost:3000/item/get');
+      console.log("food")
+      console.log(response.data)
       setFoods(response.data);
       setLoading(false); // Set loading to false after fetching data
     } catch (error) {
@@ -38,7 +40,7 @@ function Home() {
           <ul className="flex flex-wrap justify-center">
             {foods.map((food) => (
               <li key={food._id} className="mb-6 mx-4">
-                <Card blog={food} />
+                <Card food={food} />
               </li>
             ))}
           </ul>
