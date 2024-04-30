@@ -61,8 +61,19 @@ async function getPhoto(req, res, next) {
         });
     }
 }
+const singleitem = async(req,res,next)=>{
+    try{
+        const item= await Item.findById(req.params.id)
+        return res.status(200).json(item)
+
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 module.exports = {
     create,
     get,
-    getPhoto
+    getPhoto,
+    singleitem
 }
