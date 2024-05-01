@@ -3,13 +3,19 @@ const User = require('../Models/User');
 
 const verifyToken =(req,res,next)=>{
   try {
+
+      console.log('start')
       const decode = jwt.verify(
         req.headers.authorization,
         process.env.jwtsecret
       );
+      console.log('check') 
       req.user = decode;
+      console.log(req.user)
+      
       next();
     } catch (error) {
+      console.log('error')
       console.log(error);
     }
 } 

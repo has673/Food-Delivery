@@ -16,7 +16,9 @@ const CartSchema = new mongoose.Schema({
       type: Number,
       required: true,
       default: 1
-    }
+    },
+    name: String, // Include the name of the item
+    price: Number
   }],
   createdAt: {
     type: Date,

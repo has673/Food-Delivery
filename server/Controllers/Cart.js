@@ -5,11 +5,19 @@ const Item = require('../Models/Item');
 // Get user's cart
 const getCart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user.uid }).populate('items.product');
-    res.json(cart);
+    const cart = await Cart.findOne({ user: req.user.uid }).populate({
+      path: 'items.product',
+      select: 'name price' // Select the name and price fields from the Item model
+    });
+
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+  console.log('your cart')
+    return res.status(200).json(cart);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    return res.status(500).json({ message: 'Server Error' });
   }
 };
 
@@ -47,7 +55,7 @@ const addToCart = async (req, res) => {
     if (!cart) {
       cart = new Cart({ user: req.user.id, items: [] });
     }
-
+    
     // Fetch product details from the database based on productId
     const product = await Item.findById(productId);
 
@@ -65,7 +73,7 @@ const addToCart = async (req, res) => {
 
     await cart.save();
 
-    res.json(cart);
+      res.json(cart);
     console.log('cart updated')
   } catch (error) {
     console.error(error);
