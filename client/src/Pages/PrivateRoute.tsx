@@ -10,12 +10,15 @@ const PrivateRoute = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const loading = useSelector((state) => state.user.loading);
+  
+  
 
   useEffect(() => {
     const authcheck = async () => {
       try {
         const res = await axios.get("http://localhost:3000/auth/checksignin");
         if (res.data.ok) {
+          console.log(res.data.currentUser)
           dispatch(loginSuccess(res.data.currentUser)); // Assuming the response contains currentUser
         } else {
           dispatch(loginFailure());

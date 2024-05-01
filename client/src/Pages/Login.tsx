@@ -35,7 +35,8 @@ function Login() {
     });
 
       if (res.status === 200) {
-       
+       const {token} = res.data
+       console.log(token)
         dispatch(loginSuccess(res.data));
         navigate('/Home');
       } else {

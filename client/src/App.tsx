@@ -8,10 +8,10 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Food from './Pages/Food';
-import Cart from './Pages/Cart';
 import PrivateRoute from './Pages/PrivateRoute';
 import NotFound from './Pages/NotFound';
 import Order from './Pages/Order';
+import Cart from './Pages/Cart';
 // import Dashboard from './Pages/Admin/Dashboard';
 // import Forgot from './Pages/Forgot';
 // import UpdateProfile from './Pages/User/UpdateProfile'
@@ -34,24 +34,21 @@ const router = createBrowserRouter(
       
         <Route path='/Order' element={<Order/>} />
         {/* <Route path='/Dashboard' element={<Dashboard/>}> */}
-        <Route path="/food/:id"  element={<PrivateRoute/>} > 
-         <Route path='' element=<Food/> />
-        </Route>
-        <Route element={<PrivateRoute/>} 
-        
-        
-        />
-       
-       
-  
-         </Route>
-      \
-        
+          <Route path='/food/:id' element={<PrivateRoute />}>
+          <Route path='' element={<Food />} />
+         
+        </Route> 
+        <Route path='/Cart' element={<PrivateRoute />}>
+          <Route path='' element={<Cart/>} />
+         
+        </Route> 
+         
         {/* <Route path='/user/:id' element={<User/>} />
         <Route path='/updateprofile/:id' element={<UpdateProfile/>}/>
         <Route path='/writeblog' element={<Write/>}/>
         <Route path='/editblog/:id' element={<EditBlog/>}/> */}
         <Route path= "*" element={<NotFound/>}/> 
+        </Route>
         
       
     </>

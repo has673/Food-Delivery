@@ -4,24 +4,26 @@ import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 // import Comment from '../components/Comment'; // Import the Comment component
 // import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import MakeComment from '../components/MakeComment';
 
 // import { checkLiked } from '../../../server/Controllers/User';
 
 function Food() {
     const { id } = useParams();
+    const  productId = id
     const [food, setFood] = useState(null);
     const [loading, setLoading] = useState(true);
+    const currentUser = useSelector((state) => state.user.currentUser);
+    const token =useSelector((state) => state.user.currentUser.token)
     // const[my , setMy] = useState(false)
     // const[mycomment, setMyComment] = useState(false)
     // const[content , setContent ]= useState('')
     // const [comments, setComments] = useState([]);
     // const [loadingComments, setLoadingComments] = useState(true);
     // const [isLiked, setIsLiked] = useState(false); // Track if the user has already liked the blog
-    // const userId = useSelector(state => state.user.currentUser.uid);
-    // const token = useSelector(state => state.user.currentUser.token);
-    // console.log(userId)
+  
+
 
     useEffect(() => {
         fetchFood();
@@ -48,25 +50,27 @@ function Food() {
     //         console.error(err);
     //     }
     // };
-    const Addtocart= async()=>{
-        try{
-            const cart = await axios.get(`http://localhost:3000/cart/addtocart/${id}`,{
-                quantity:1
-            });
+    const Addtocart = async () => {
+        try {
+          const response = await axios.post(`http://localhost:3000/cart/addtocart/${productId}`, {
             
-            console.log('cart')
-
+            headers: {
+              Authorization: token
+            }
+          });
+          console.log('Cart added:', response.data);
+        } catch (error) {
+          console.error('Error adding to cart:', error);
         }
-        catch(err){
-            console.log(err)
-        }
-       
-
-    }
+      };
     const fetchFood = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:3000/item/getone/${id}`);
+            const response = await axios.get(`http://localhost:3000/item/getone/${id}`,{
+                headers:{
+                    Authorization:token
+                }
+            });
             console.log(response.data)
             setFood(response.data);
             console.log(food)

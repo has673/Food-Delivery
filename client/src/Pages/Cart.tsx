@@ -1,48 +1,56 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Card from "../components/Card";
-import { ClipLoader } from 'react-spinners';
+import { useEffect , useState } from "react";
+import { useSelector } from "react-redux";
+import { ClipLoader } from "react-spinners";
+
+import CartCard from "../components/CartCard";
+
 
 function Cart() {
- 
-    const [cart, setCart] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const getcart=async()=>{
-        try{
-            const respone = await axios.get(`http://localhost:3000/cart/getcart/`)
-            setCart(respone.data)
-            setLoading(false)
+  const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const token = useSelector((state) => state.user.currentUser.token);
 
+  const getCart = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/cart/getcart/`, {
+        headers: {
+          Authorization: token
         }
-        catch(err){
-        console.log(err)
-        setLoading(false)
-        }
-        finally{
-          setLoading(false)
-        }
+      });
+      console.log(response.data);
+      setCart(response.data); // Set the entire response data to the cart state
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
     }
-    useEffect(()=>{
-     getcart()
-    },[])
-  
+  };
+  useEffect(() => {
+    getCart();
+  }, []);
+
   return (
     <div>
-      <h1>Cart</h1>
-      {loading ? ( // Show spinner when loading is true
-          <ClipLoader color="#36D7B7" size={50} loading={loading} />
+    <h1>Cart</h1>
+    {loading ? (
+      <ClipLoader color="#36D7B7" size={50} loading={loading} />
+    ) : (
+      <ul className="flex flex-wrap justify-center">
+        {cart && cart.items && cart.items.length > 0 ? (
+          cart.items.map((cartItem) => (
+            <li key={cartItem._id} className="mb-6 mx-4">
+              <CartCard Cart={cartItem} />
+            </li>
+          ))
         ) : (
-          <ul className="flex flex-wrap justify-center">
-            {cart.map((cart) => (
-              <li key={cart._id} className="mb-6 mx-4">
-                <Card food={cart} />
-              </li>
-            ))}
-          </ul>
+          <p>Your cart is empty.</p>
         )}
-    </div>
-  )
+      </ul>
+    )}
+  </div>
+  );
 }
 
-export default Cart
+export default Cart;
